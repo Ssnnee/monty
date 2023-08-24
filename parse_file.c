@@ -3,7 +3,10 @@
 instruction_t instructions[] = {
 	{"push", push},
 	{"pall", pall},
-	{NULL, NULL}};
+	{"pint", pint},
+	{"pop", pop},
+	{NULL, NULL}
+};
 
 /**
  * parse_file - Read and process instructions from a file.
@@ -23,19 +26,16 @@ void parse_file(char *filepath)
 	len = 0, line = NULL, line_number = 0;
 	file = fopen(filepath, "r");
 	if (file == NULL)
-	{
-		fprintf(stderr, "Error: Can't open file %s\n", filepath);
+	{ fprintf(stderr, "Error: Can't open file %s\n", filepath);
 		exit(EXIT_FAILURE);
 	}
 
 	/* read each line */
 	while ((read = getline(&line, &len, file)) != -1)
-	{
-		char *opcode;
+	{ char *opcode;
 		unsigned int argument;
 
 		line_number++;
-
 		/* split line into opcode and argument */
 		opcode = strtok(line, " \t\r\n");
 		if (opcode == NULL || *opcode == '\0')
@@ -46,17 +46,14 @@ void parse_file(char *filepath)
 		for (i = 0; instructions[i].opcode; i++)
 		{
 			if (strcmp(opcode, instructions[i].opcode) == 0)
-			{
-				instructions[i].f(&global_stack, argument);
+			{ instructions[i].f(&global_stack, argument);
 				break;
 			}
 		}
 		if (instructions[i].opcode == NULL)
-		{
-			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
+		{ fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
 			exit(EXIT_FAILURE);
 		}
-	}
-	free(line);
+	} free(line);
 	fclose(file);
 }

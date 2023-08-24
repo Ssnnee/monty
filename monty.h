@@ -45,5 +45,7 @@ extern stack_t *global_stack;
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number __attribute__((unused)));
 void parse_file(char *filepath);
+void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
 
 #endif
