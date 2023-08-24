@@ -45,3 +45,16 @@ void add(stack_t **stack, unsigned int line_number)
 	*stack = temp->next;
 	free(temp);
 }
+
+
+/**
+ * nop -  Does not do anything.
+ * @stack: Double pointer to the top of the stack.
+ * @line_number: Line number of the instruction
+ *
+ * Return: void
+ */
+void nop(stack_t **stack __attribute__((unused)), unsigned int line_number __attribute__((unused)))
+{
+	return;
+}
