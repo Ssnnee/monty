@@ -55,15 +55,13 @@ void pall(stack_t **stack, unsigned int line_number __attribute__((unused)))
  * pint - Print he value at the top of the stack,
  * @stack: Double pointer to the top of the stack.
  * @line_number: Line number of the instruction
- * (unused, for compatibility).
  *
  * Return: void
  */
-void pint(stack_t **stack, unsigned int line_number __attribute__((unused)))
+void pint(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = *stack;
-
-	if (stack == NULL || *stack == NULL)
+	if (temp == NULL)
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
