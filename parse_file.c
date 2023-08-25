@@ -1,23 +1,12 @@
 #include "monty.h"
 
-instruction_t instructions[] = {
-	{"push", push},
-	{"pall", pall},
-	{"pint", pint},
-	{"pop", pop},
-	{"swap", swap},
-	{"add", add},
-	{"nop", nop},
-	{NULL, NULL}
-};
-
 /**
  * parse_file - Read and process instructions from a file.
  * @filepath: Path to the file containing instructions.
  *
  * Return: void
  */
-void parse_file(char *filepath)
+void parse_file(char *filepath, instruction_t *instructions)
 {
 	FILE *file;
 	char *line, *token;

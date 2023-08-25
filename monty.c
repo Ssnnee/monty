@@ -11,11 +11,25 @@ stack_t *global_stack = NULL;
  */
 int main(int argc, char **argv)
 {
+	instruction_t instructions[] = {
+		{"push", push},
+		{"pall", pall},
+		{"pint", pint},
+		{"pop", pop},
+		{"swap", swap},
+		{"add", add},
+		{"nop", nop},
+		{"sub", sub},
+		{"divs", divs},
+		{"mul", mul},
+		{"mod", mod},
+		{NULL, NULL}};
+
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	parse_file(argv[1]);
+	parse_file(argv[1], instructions);
 	return (0);
 }
